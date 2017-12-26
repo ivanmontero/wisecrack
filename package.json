@@ -1,0 +1,10 @@
+{
+    "name": "wisecrack",
+    "version": "0.0.1",
+    "description": "party game inspired by Quiplash",
+    "dependencies": {
+        "express": "^4.16.2",
+        "handlebars": "^4.0.11",
+        "socket.io": "^2.0.4"
+    }
+}
