@@ -16,10 +16,9 @@ var socketEventHandlers;
 app.use(express.static("static"));
 
 app.get("/", function(req, res) {
-    var src = fs.readFileSync(__dirname + "/templates/select.html", "utf8");
-    var template = handlebars.compile(src);
-    // Adding html tags to template
-    res.send("<!DOCTYPE html><html>" + template() + "</html>");
+    // var src = fs.readFileSync(__dirname + "/templates/select.html", "utf8");
+    // var template = handlebars.compile(src);
+    res.sendFile(__dirname + "/static/main.html");
 });
 
 http.listen(port, function() {
@@ -28,8 +27,13 @@ http.listen(port, function() {
 
 function onConnect(socket) {
     console.log("user connected");
+    // Socket handlers
     for(var e in socketEventHandlers) 
         socket.on(e, socketEventHandlers[e]);
+    // Select screen
+    var src = fs.readFileSync(__dirname + "/templates/select.html", "utf8");
+    var template = handlebars.compile(src);
+    socket.emit("setbodyhtml", template());
 }
 
 function onDisconnect() {
