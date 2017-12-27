@@ -1,9 +1,11 @@
 $(document).ready(function() {
-    $(document).on("click", "#switch-button-host", function() {
-        console.log("#switch-button-host");
+    $(document).on("click", "#select-button-host", function() {
+        console.log("#select-button-host");
+        socket.emit("select-host");
     });
 
-    $(document).on("click", "#switch-button-join", function() {
-        console.log("#switch-button-join");
+    $(document).on("click", "#select-button-join", function() {
+        console.log("#select-button-join");
+        socket.emit("select-join");
     });
 });
