@@ -1,9 +1,9 @@
 $(document).ready(function() {
-    $(document).on("click", "#button-host", function() {
-        console.log("#button-host");
+    $(document).on("click", "#switch-button-host", function() {
+        console.log("#switch-button-host");
     });
 
-    $(document).on("click", "#button-join", function() {
-        console.log("#button-join");
+    $(document).on("click", "#switch-button-join", function() {
+        console.log("#switch-button-join");
     });
 });

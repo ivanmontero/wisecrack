@@ -7,3 +7,12 @@ module.exports = class {
 
 
 };
+
+
+
+
+// functions using this must be declared async. to call this, you
+// must precede the function call with "await".
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

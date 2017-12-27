@@ -11,13 +11,10 @@ var fs = require("fs");
 var Game = require("./game.js");
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var socketEventHandlers;
 
 app.use(express.static("static"));
 
 app.get("/", function(req, res) {
-    // var src = fs.readFileSync(__dirname + "/templates/select.html", "utf8");
-    // var template = handlebars.compile(src);
     res.sendFile(__dirname + "/static/main.html");
 });
 
@@ -28,8 +25,10 @@ http.listen(port, function() {
 function onConnect(socket) {
     console.log("user connected");
     // Socket handlers
-    for(var e in socketEventHandlers) 
-        socket.on(e, socketEventHandlers[e]);
+    socket.on("disconnect", function() {
+        console.log("user diconnected");
+    });
+
     // Select screen
     var src = fs.readFileSync(__dirname + "/templates/select.html", "utf8");
     var template = handlebars.compile(src);
@@ -40,27 +39,8 @@ function onDisconnect() {
     console.log("user disconnected");
 }
 
-function addIOEventHandlers(events) {
-    for(var e in events) io.on(e, events[e]);
-}
-
-function addSocketEventHandlers(events) {
-    socketEventHandlers = events;
-}
-
-addIOEventHandlers({
+// Add all handlers here
+for (let [e, handler] of Object.entries({
     "connection": onConnect
-});
+})) io.on(e, handler);
 
-addSocketEventHandlers({
-    "disconnect": onDisconnect
-});
-
-
-
-
-// functions using this must be declared async. to call this, you
-// must precede the function call with "await".
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
