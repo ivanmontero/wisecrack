@@ -27,6 +27,13 @@ io.on("connection", function(socket) {
     socket.on("disconnect", function() {
         console.log("user diconnected");
     });
+    socket.on("select-host", function() {
+        addNewGame(this);
+
+    });
+    socket.on("select-join", function() {
+
+    });
     
     // Select screen
     var src = fs.readFileSync(__dirname + "/templates/select.html", "utf8");

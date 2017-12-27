@@ -1,10 +1,13 @@
+var fs = require("fs");
+var handlebars = require("handlebars");
+
 module.exports = function(io) {
     this.io = io;
 
     this.games = {}; // [id, game]
     
     this.addNewGame = function(host) {
-        // Lets make the ID a unique combination of numbers
+        // Assign unique ID to this game
         var id = Math.floor(Math.random() * 10000);
         var unique = false;
         while(!unique) {
@@ -17,18 +20,42 @@ module.exports = function(io) {
                 }
             }
         }
+        
         // Add leading zeroes
         sId = "" + id;
         while (sId.length < 4) {s = "0" + s;}
+        
+        // Add game
         games[sId] = new Game(sId, host);
+        console.log("" + host.id + " created game with id " + sId); 
+        
+        // Set page for host     
+        var src = fs.readFileSync(__dirname + "/templates/host.html", "utf8");
+        var template = handlebars.compile(src);
+        var data = {
+            id: sId
+        };
+        host.emit("setbodyhtml", template(data));
     };
 
     this.Game = class {
         constructor(id, host) {
             this.roomID = id;
             this.host = host;
+            this.host["game"] = this;
             this.players = [];
-        }
+
+            // add host handler
+            this.host.on("disconnect", function() {
+                console.log("host of " + this.game.roomID + " has disconnected");
+                this.game.release();
+            });
+        };
+
+        release() {
+            // TODO: Disconnect all the clients before deleting
+            delete games[this.roomID];
+        };
     };
 }
 
