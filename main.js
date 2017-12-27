@@ -10,7 +10,7 @@ var fs = require("fs");
 // require('./filename.js')();
 var Game = require("./game.js");
 
-var port = 8080;
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var socketEventHandlers;
 
 app.use(express.static("static"));
