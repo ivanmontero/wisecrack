@@ -1,2 +1,0 @@
-Make one single html file that contains all the necessary imports. and only change the body elements
-^^^ never change head. Load all scripts on start.
