@@ -4,6 +4,7 @@ var app = express();
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
 var handlebars = require("handlebars");
+var fs = require("fs");
 
 // Other file imports
 // require('./filename.js')();
@@ -15,7 +16,10 @@ var socketEventHandlers;
 app.use(express.static("static"));
 
 app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/static/select.html");
+    var src = fs.readFileSync(__dirname + "/templates/select.html", "utf8");
+    var template = handlebars.compile(src);
+    // Adding html tags to template
+    res.send("<!DOCTYPE html><html>" + template() + "</html>");
 });
 
 http.listen(port, function() {
