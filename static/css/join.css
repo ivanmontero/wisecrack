@@ -1,0 +1,83 @@
+#join-top {
+    height: 10%;
+}
+
+#join-form {
+    width: 100%;
+    height: 100%;
+
+}
+
+#join-input-container {
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (orientation: landscape) {
+    .join-ghost-input {
+        width: 75%;
+        font-size: 5vmin;
+    }
+    .join-ghost-button {
+        font-size: 7vmin;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .join-ghost-input {
+        width: 100%;
+        font-size: 7vmin;
+    }
+    .join-ghost-button {
+        font-size: 9vmin;
+    }
+}
+
+.join-ghost-input {
+    margin: 5vh auto;
+    text-align: center;
+    display: block;
+    font-weight:600;
+    border:0px;
+    outline: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
+    color: #4b545f;
+    background: #fff;
+    padding: 10px 15px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.join-ghost-input:focus {
+    /* border-bottom:1px solid #ddd; */
+
+}
+
+.join-ghost-button {
+    margin: 0 auto;
+    display: block;
+    background-color: #00ff6b;
+    color: white;
+    border: 0;
+    padding:10px 30px; 
+    min-width: 350px;
+    font-weight: 600;
+    font-family: 'Raleway', sans-serif;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+/* .join-ghost-button:hover {
+    border:2px solid #515151;
+} */

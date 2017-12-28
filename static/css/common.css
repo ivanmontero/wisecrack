@@ -1,8 +1,9 @@
 body {
-    border: none;
-    padding: none;
-    width: 99%;
-    height: 92.5vh;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    width: auto;
+    height: 100vh;
     background-color: #00dfff;
     font-family: 'Raleway', sans-serif;
     font-weight: 800;

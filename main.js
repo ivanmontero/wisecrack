@@ -29,10 +29,12 @@ io.on("connection", function(socket) {
     });
     socket.on("select-host", function() {
         addNewGame(this);
-
     });
     socket.on("select-join", function() {
-
+        // Set page for user
+        var src = fs.readFileSync(__dirname + "/templates/join.html", "utf8");
+        var template = handlebars.compile(src);
+        this.emit("setbodyhtml", template());
     });
     
     // Select screen
