@@ -23,7 +23,7 @@ module.exports = function(io) {
         
         // Add leading zeroes
         sId = "" + id;
-        while (sId.length < 4) {s = "0" + s;}
+        while (sId.length < 4) {sId = "0" + sId;}
         
         // Add game
         games[sId] = new Game(sId, host);
