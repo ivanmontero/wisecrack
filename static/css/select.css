@@ -2,7 +2,6 @@
 
 #select-name-container {
     width: 100%;
-    height: 15%;
 }
 
 #select-name-text {
@@ -17,24 +16,19 @@
 }
 
 #select-button-container {
-    width: 100%;
-    height: 85%;
+    width: 100;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .select-button {
-    width: 40vw;
-    height: 80%;
     color: #FFF;
     text-align: center;
     display: inline-flex;
     align-items: center;
     font-size: 6vmin;
     justify-content: center;
-    margin-left: 2vw;
-    margin-right: 2vw;
 }
 
 #select-button-host {
@@ -45,3 +39,34 @@
     background-color: #00ff6b;
 }
 
+@media screen and (orientation: landscape) {
+    #select-button-container {
+        flex-direction: row;
+        height: 85%;
+    }
+    .select-button {
+        margin-left: 2vw;
+        margin-right: 2vw;
+        width: 40vw;
+        height: 80%;
+    }
+    #select-name-container {
+        height: 15%;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    #select-button-container {
+        flex-direction: column;
+        height: 90%;
+    }
+    .select-button {
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+        width: 80vw;
+        height: 40%;
+    }
+    #select-name-container {
+        height: 10%;
+    }
+}

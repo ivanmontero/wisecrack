@@ -36,7 +36,24 @@ io.on("connection", function(socket) {
         var template = handlebars.compile(src);
         this.emit("setbodyhtml", template());
     });
-    
+    socket.on("join-back", function() {     
+        var src = fs.readFileSync(__dirname + "/templates/select.html", "utf8");
+        var template = handlebars.compile(src);
+        socket.emit("setbodyhtml", template());
+    });
+    socket.on("join-join", function(pin, name) {
+        if(!joinGame(pin, this, name)) {
+            socket.emit("join-join-error", "game with pin " + pin + " does not exist");
+        } else {
+            var src = fs.readFileSync(__dirname + "/templates/player.html", "utf8");
+            var template = handlebars.compile(src);
+            var data = {
+                name: name
+            };
+            socket.emit("setbodyhtml", template(name));
+        }
+    });
+
     // Select screen
     var src = fs.readFileSync(__dirname + "/templates/select.html", "utf8");
     var template = handlebars.compile(src);

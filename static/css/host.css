@@ -1,0 +1,27 @@
+#host-top {
+    height: 10%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
+
+#host-back-button {
+    font-weight: 600;
+    background-color: #ff0040;
+    color: white;
+    display: inline-block;
+    padding: 3vmin;
+}
+
+
+@media screen and (orientation: landscape) {
+    #host-back-button {
+        font-size: 3vmin;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    #host-back-button {
+        font-size: 5vmin;
+    }
+}

@@ -38,10 +38,11 @@ module.exports = function(io) {
         host.emit("setbodyhtml", template(data));
     };
     
-    this.joinGame = new function(player, pin) {
-
-
-        // return if successful join
+    // returns true if successful join
+    this.joinGame = function(pin, socket, name) {
+        if(!games.hasOwnProperty(pin)) return false;
+        games[pin].addPlayer(socket, name);
+        return true;
     };
 
     this.Game = class {
@@ -50,6 +51,7 @@ module.exports = function(io) {
             this.host = host;
             this.host["game"] = this;
             this.players = [];
+            this.serializablePlayers = [];
 
             // add host handler
             this.host.on("disconnect", function() {
@@ -58,15 +60,29 @@ module.exports = function(io) {
             });
         };
 
+        addPlayer(socket, name) {
+            this.players.push(socket, name, this);
+            this.serializablePlayers.push ({
+                id: socket.id,
+                name: name,
+                // ...
+            });
+            // alert host
+            // TODO: Change name to make applicable
+            this.host.emit("updateplayers", serializablePlayers);
+        };
+
         release() {
             // TODO: Disconnect all the clients before deleting
             delete games[this.pin];
         };
     };
 
-    this.player = class {
-        constructor(socket) {
+    this.Player = class {
+        constructor(socket, name, game) {
             this.socket = socket;
+            this.name = name;
+            this.game = game;
             this.points = 0;
         }
 

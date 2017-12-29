@@ -1,11 +1,20 @@
 #join-top {
     height: 10%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
+
+#join-back-button {
+    font-weight: 600;
+    background-color: #ff0040;
+    color: white;
+    display: inline-block;
 }
 
 #join-form {
     width: 100%;
     height: 100%;
-
 }
 
 #join-input-container {
@@ -16,6 +25,10 @@
 }
 
 @media screen and (orientation: landscape) {
+    #join-back-button {
+        font-size: 3vmin;
+        padding: 2vmin 3vmin;
+    }
     .join-ghost-input {
         width: 75%;
         font-size: 5vmin;
@@ -23,15 +36,25 @@
     .join-ghost-button {
         font-size: 7vmin;
     }
+    #join-error {
+        font-size: 5vmin;
+    }
 }
 
 @media screen and (orientation: portrait) {
+    #join-back-button {
+        font-size: 5vmin;
+        padding: 3vmin;
+    }
     .join-ghost-input {
         width: 100%;
         font-size: 7vmin;
     }
     .join-ghost-button {
         font-size: 9vmin;
+    }
+    #join-error {
+        font-size: 7vmin;
     }
 }
 
@@ -63,7 +86,7 @@
 
 .join-ghost-button {
     margin: 0 auto;
-    display: block;
+    display: none;
     background-color: #00ff6b;
     color: white;
     border: 0;
@@ -79,5 +102,10 @@
 }
 
 /* .join-ghost-button:hover {
-    border:2px solid #515151;
+border:2px solid #515151;
 } */
+
+#join-error {
+    text-align: center;
+    color: #ff0040;
+}
