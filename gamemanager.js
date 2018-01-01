@@ -1,6 +1,4 @@
-var fs = require("fs");
-var handlebars = require("handlebars");
-var tempaltes = require("./templatemanager.js")();
+var templates = require("./templatemanager.js")();
 
 module.exports = function(io) {
     this.io = io;
@@ -34,12 +32,10 @@ module.exports = function(io) {
         host.join(sPin + "host");
 
         // Set page for host     
-        var src = fs.readFileSync(__dirname + "/templates/host.html", "utf8");
-        var template = handlebars.compile(src);
         var data = {
             game_pin: sPin
         };
-        host.emit("setbodyhtml", template(data));
+        host.emit("setbodyhtml", templates["host"](data));
     };
 
     // returns true if successful join
@@ -73,9 +69,7 @@ module.exports = function(io) {
                 this.on("disconnect", function() {
                     console.log("user disconnected");
                 });
-                var src = fs.readFileSync(__dirname + "/templates/select.html", "utf8");
-                var template = handlebars.compile(src);
-                this.emit("setbodyhtml", template());
+                this.emit("setbodyhtml", templates["select"]());
             });
 
         };

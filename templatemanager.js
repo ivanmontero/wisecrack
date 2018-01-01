@@ -6,7 +6,6 @@ const TEMPLATE_DIR = __dirname + "/templates/";
 var templates = null;
 
 module.exports = function() {
-    console.log(templates==null);
     if(templates == null) {
         templates = {};
         var files = fs.readdirSync(TEMPLATE_DIR);
