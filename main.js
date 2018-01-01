@@ -8,7 +8,7 @@ var fs = require("fs");
 
 // File imports
 require("./gamemanager.js")(io);
-
+var templates = require("./templatemanager.js")();
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 app.use(express.static("static"));
@@ -31,10 +31,11 @@ io.on("connection", function(socket) {
         addNewGame(this);
     });
     socket.on("select-join", function() {
-        // Set page for user
-        var src = fs.readFileSync(__dirname + "/templates/join.html", "utf8");
-        var template = handlebars.compile(src);
-        this.emit("setbodyhtml", template());
+        // // Set page for user
+        // var src = fs.readFileSync(__dirname + "/templates/join.html", "utf8");
+        // var template = handlebars.compile(src);
+        // this.emit("setbodyhtml", template());
+        this.emit("setbodyhtml", templates["join"]());
     });
     socket.on("join-back", function() {     
         var src = fs.readFileSync(__dirname + "/templates/select.html", "utf8");
@@ -45,6 +46,7 @@ io.on("connection", function(socket) {
         if(!joinGame(pin, this, name)) {
             socket.emit("join-join-error", "game with pin " + pin + " does not exist");
         } else {
+            // TODO: Compile all templates on startup
             var src = fs.readFileSync(__dirname + "/templates/player.html", "utf8");
             var template = handlebars.compile(src);
             var data = {
