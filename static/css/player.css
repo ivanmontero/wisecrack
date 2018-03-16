@@ -1,0 +1,35 @@
+#player-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #00ff6b;
+    width: 100%;
+}
+
+#player-name {
+    padding: none;
+}
+
+#player-game-area {
+    height: 90%;
+
+}
+
+@media screen and (orientation: landscape) {
+    #player-name-container {
+        height: 10%;
+    }
+    #player-name { 
+        font-size: 7vmin;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    #player-name-container {
+        height: 10%;
+    }
+    #player-name {
+        font-size: 7vmax; /* fix font */
+    }
+}
